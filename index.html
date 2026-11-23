@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Lemonene is an early-stage biofuel concept exploring the potential of limonene recovered from citrus peels."
+  />
+  <title>Lemonene — A fresh idea for fuel</title>
+
+  <style>
+    :root {
+      --ink: #203326;
+      --muted: #627064;
+      --green: #2e583b;
+      --lime: #d7ed71;
+      --cream: #fbf8ed;
+      --white: #fffef9;
+      --orange: #f3a342;
+      --line: rgba(32, 51, 38, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lime);
+      font-size: 1.15rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .nav a:hover {
+      color: var(--green);
+    }
+
+    .nav .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 50px;
+      align-items: center;
+      min-height: 620px;
+      padding: 65px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 24px;
+      height: 2px;
+      background: var(--orange);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin-bottom: 22px;
+      font-size: clamp(3.2rem, 7vw, 6.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.085em;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 20px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #22452e;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .button.secondary:hover {
+      background: rgba(46, 88, 59, 0.08);
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-height: 430px;
+      place-items: center;
+    }
+
+    .sun {
+      position: absolute;
+      top: 3%;
+      right: 3%;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--orange);
+      opacity: 0.92;
+    }
+
+    .orbit {
+      position: relative;
+      display: grid;
+      width: min(390px, 85vw);
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgba(32, 51, 38, 0.19);
+      border-radius: 50%;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      position: absolute;
+      border: 1px solid rgba(32, 51, 38, 0.13);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .orbit::before {
+      inset: 28px;
+    }
+
+    .orbit::after {
+      inset: 58px;
+    }
+
+    .fruit {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 225px;
+      height: 225px;
+      place-items: center;
+      border: 12px solid #f4b52f;
+      border-radius: 50%;
+      background: #ffd84c;
+      box-shadow: inset -15px -15px 0 rgba(207, 135, 23, 0.12),
+        0 24px 60px rgba(89, 92, 31, 0.16);
+      font-size: 5.2rem;
+    }
+
+    .float-label {
+      position: absolute;
+      z-index: 2;
+      padding: 10px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(32, 51, 38, 0.08);
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .label-one {
+      top: 17%;
+      left: 0;
+    }
+
+    .label-two {
+      right: -2%;
+      bottom: 21%;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 670px;
+      margin-bottom: 44px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -0.065em;
+    }
+
+    .section-heading p {
+      max-width: 580px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .idea-section {
+      background: var(--white);
+    }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .idea-card {
+      padding: 32px;
+      border-radius: 24px;
+      background: var(--lime);
+    }
+
+    .idea-card .number {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .idea-card h3 {
+      max-width: 360px;
+      margin-bottom: 12px;
+      font-size: 1.7rem;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .idea-card p {
+      margin-bottom: 0;
+      color: #435541;
+    }
+
+    .idea-copy {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .idea-copy strong {
+      color: var(--ink);
+    }
+
+    .process-section {
+      background: var(--green);
+      color: white;
+    }
+
+    .process-section .eyebrow,
+    .process-section .section-heading p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .process-section .section-heading h2 {
+      color: white;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      min-height: 220px;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .step-number {
+      display: inline-grid;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 24px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .step p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.93rem;
+    }
+
+    .vision-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .vision-note {
+      padding: 30px;
+      border-left: 3px solid var(--orange);
+      background: rgba(215, 237, 113, 0.22);
+      color: var(--muted);
+    }
+
+    .vision-note strong {
+      color: var(--ink);
+    }
+
+    .cta-section {
+      padding: 70px 0;
+      background: var(--lime);
+    }
+
+    .cta-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .cta-inner h2 {
+      max-width: 600px;
+      margin-bottom: 8px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+    }
+
+    .cta-inner p {
+      margin-bottom: 0;
+      color: #526247;
+    }
+
+    .cta-section .button {
+      flex-shrink: 0;
+    }
+
+    footer {
+      padding: 28px 0;
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    footer .brand {
+      color: white;
+    }
+
+    footer .brand-mark {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        gap: 14px;
+      }
+
+      .nav a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        min-height: auto;
+        padding: 68px 0 80px;
+      }
+
+      .hero-art {
+        min-height: 350px;
+      }
+
+      .orbit {
+        width: min(330px, 78vw);
+      }
+
+      .fruit {
+        width: 185px;
+        height: 185px;
+        font-size: 4.3rem;
+      }
+
+      .scroll-note {
+        display: none;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .idea-grid,
+      .vision-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        min-height: 0;
+      }
+
+      .cta-inner,
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#" aria-label="Lemonene home">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      lemonene
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#idea">The idea</a>
+      <a href="#approach">Our approach</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell hero">
+      <div>
+        <p class="eyebrow">A biofuel idea in progress</p>
+        <h1>A fresh start for <span>fuel.</span></h1>
+        <p class="hero-copy">
+          Lemonene is an independent project exploring how limonene—a natural
+          compound found in citrus peels—could play a part in a more circular
+          approach to energy.
+        </p>
+        <div class="actions">
+          <a class="button" href="#idea">Explore the idea</a>
+          <a class="button secondary" href="#approach">How it could work</a>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="Illustration of a citrus fruit">
+        <div class="sun" aria-hidden="true"></div>
+        <div class="orbit">
+          <span class="float-label label-one">citrus peel</span>
+          <div class="fruit" aria-hidden="true">🍋</div>
+          <span class="float-label label-two">a new possibility</span>
+        </div>
+      </div>
+
+      <span class="scroll-note">Scroll to discover ↓</span>
+    </section>
+
+    <section class="idea-section section" id="idea">
+      <div class="shell idea-grid">
+        <div class="idea-card">
+          <span class="number">THE CONCEPT · 01</span>
+          <h3>Turning a peel into a starting point.</h3>
+          <p>
+            Citrus peels are often left over after fruit is processed. Lemonene
+            asks whether some of that overlooked material could become a useful
+            feedstock for future fuel research.
+          </p>
+        </div>
+
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">What is limonene?</p>
+            <h2>A familiar scent with an interesting chemistry.</h2>
+          </div>
+          <div class="idea-copy">
+            <p>
+              <strong>Limonene</strong> is a naturally occurring compound found
+              in the peels of citrus fruits such as oranges and lemons. It is
+              part of what gives their oils a bright, recognizable aroma.
+            </p>
+            <p>
+              The Lemonene project is exploring an early-stage idea: recover
+              limonene from citrus peel waste and investigate whether it could
+              be converted or used in a fuel pathway.
+            </p>
+            <p>
+              The goal is to learn what is technically, environmentally, and
+              economically viable—not to claim a finished fuel exists today.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section section" id="approach">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">From waste to research</p>
+          <h2>A possible path, one question at a time.</h2>
+          <p>
+            Each step would need careful testing. Lemonene is a concept, and
+            turning it into a practical fuel would require research and
+            validation.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <h3>Collect</h3>
+            <p>
+              Explore sources of citrus peel by-products from food processing
+              and other local supply chains.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">02</span>
+            <h3>Recover</h3>
+            <p>
+              Investigate safe, efficient ways to separate useful compounds
+              from the peel material.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">03</span>
+            <h3>Evaluate</h3>
+            <p>
+              Study conversion options, fuel performance, life-cycle impacts,
+              and whether the process makes sense at scale.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section vision-section">
+      <div class="section-heading">
+        <p class="eyebrow">The bigger picture</p>
+        <h2>Make better use of what we already have.</h2>
+        <p>
+          Lemonene starts with a simple question: could a citrus by-product
+          become part of a smarter energy story?
+        </p>
+      </div>
+
+      <aside class="vision-note">
+        <p>
+          <strong>Curiosity comes first.</strong> Sustainable fuel depends on
+          more than its source. A credible solution must also consider how the
+          feedstock is collected, how much energy processing uses, what
+          emissions result, and how it compares with alternatives.
+        </p>
+      </aside>
+    </section>
+
+    <section class="cta-section" id="contact">
+      <div class="shell cta-inner">
+        <div>
+          <h2>Good ideas grow through collaboration.</h2>
+          <p>Interested in biofuels, citrus waste, or the Lemonene concept?</p>
+        </div>
+        <!-- Replace the email below with your preferred contact address. -->
+        <a class="button" href="mailto:hello@lemonene.example">
+          Start a conversation
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <a class="brand" href="#" aria-label="Lemonene home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        lemonene
+      </a>
+      <span>Independent project · An idea under exploration</span>
+    </div>
+  </footer>
+</body>
+</html>
